@@ -1,0 +1,96 @@
+﻿<Window x:Class="LaborExchangeApplication.View.Windows.ApplicantWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaborExchangeApplication.View.Windows"
+        xmlns:viewmodel="clr-namespace:LaborExchangeApplication.ViewModel"
+        mc:Ignorable="d"
+        Title="Vacancies" Height="600" Width="850" MinHeight="520" MinWidth="310" WindowStartupLocation="CenterScreen"
+        Style="{StaticResource WindowStyle}">
+
+    <Window.DataContext>
+        <viewmodel:ApplicantViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="290" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+
+        <Border BorderThickness="0" Style="{StaticResource BorderStyle}" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal">
+                <Image Margin="5" Source="pack://application:,,,/Assets/Images/applicationImage.png" />
+                <TextBlock Text="ILabor Exchange" Style="{StaticResource TitleTextBlockStyle}" />
+            </StackPanel>
+        </Border>
+
+        <Button Grid.Column="1" Height="40" HorizontalAlignment="Right" Margin="5" Style="{StaticResource ColorSwitchImageButtonStyle}"
+                Command="{Binding SwitchColorModeCommand}" />
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <Border CornerRadius="30" Width="55" Margin="10">
+                <Border.Background>
+                    <ImageBrush Stretch="Fill" ImageSource="{Binding Avatar}" />
+                </Border.Background>
+            </Border>
+            <TextBlock Text="{Binding FullName}" Style="{StaticResource TextBlockRowStyle}" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <Button Grid.Row="1" Grid.Column="1" Content="Мои заявки" HorizontalAlignment="Right" VerticalAlignment="Center" Width="160"
+                Style="{StaticResource ButtonStyle}" Command="{Binding OpenWorkRequestWindowCommand}" />
+
+        <StackPanel Grid.Row="2">
+            <TextBlock Text="Какую работу вы ищете?" Style="{StaticResource TitleTextBlockStyle}" />
+            <TextBlock Text="Должность" Style="{StaticResource TextBlockRowStyle}" />
+            <TextBox Text="{Binding ProfessionFilter}" Style="{StaticResource TextBoxRowStyle}" />
+            <TextBlock Text="График" Style="{StaticResource TextBlockRowStyle}" />
+            <ComboBox Style="{StaticResource ComboBoxRowStyle}" ItemsSource="{Binding WorkDayRequirements}" SelectedItem="{Binding WorkDayRequirementFilter}"
+                      DisplayMemberPath="Value" />
+            <Button Content="Показать" Style="{StaticResource ButtonStyle}" Command="{Binding VacanciesFilterCommand}" />
+            <Button Content="Сбросить" Style="{StaticResource ButtonStyle}" Command="{Binding ClearVacanciesFilterCommand}" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="2" Grid.Column="1">
+            <StackPanel>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="Доступные вакансии" Margin="5,0" Style="{StaticResource TextBlockStyle}" />
+                </Border>
+                <ListBox ItemsSource="{Binding Vacancies}" SelectedItem="{Binding SelectedVacancy}" Style="{StaticResource ListBoxStyle}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="10" Style="{StaticResource BorderStyle}" CornerRadius="5">
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="{Binding CompanyOwnerPhone, StringFormat=Телефон: {0}}" Style="{StaticResource TextBlockRowStyle}" />
+                                    <TextBlock Text="{Binding CompanyOwnerEmail, StringFormat=Email: {0}}" Style="{StaticResource TextBlockRowStyle}" />
+                                    <Separator />
+                                    <TextBlock Text="{Binding Profession}" Style="{StaticResource TextBlockRowStyle}" FontSize="22" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Payment, StringFormat=Оплата: {0}}" Style="{StaticResource TextBlockRowStyle}" FontSize="22" />
+                                    <Separator />
+                                    <TextBlock Text="Образование" Style="{StaticResource TextBlockRowStyle}" />
+                                    <TextBlock Text="{Binding EducationProfession, StringFormat=Профессия: {0}}" Style="{StaticResource TextBlockRowStyle}" />
+                                    <TextBlock Text="{Binding EducationQualification, StringFormat=Квалификация: {0}}" Style="{StaticResource TextBlockRowStyle}" />
+                                    <TextBlock Text="{Binding EducationRank, StringFormat=Степень: {0}}" Style="{StaticResource TextBlockRowStyle}" />
+                                    <Separator />
+                                    <TextBlock Text="{Binding Info, StringFormat=Описание: {0}}" Style="{StaticResource TextBlockRowStyle}" />
+                                    <TextBlock Text="{Binding SpecialistRequirements, StringFormat=Требования: {0}}" Style="{StaticResource TextBlockRowStyle}" />
+                                    <TextBlock Text="{Binding WorkDayRequirements, StringFormat=График: {0}}" Style="{StaticResource TextBlockRowStyle}" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Button  Content="Выход" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Style="{StaticResource ButtonStyle}"
+                 IsDefault="True"  Command="{Binding SignOutCommand}" />
+    </Grid>
+</Window>

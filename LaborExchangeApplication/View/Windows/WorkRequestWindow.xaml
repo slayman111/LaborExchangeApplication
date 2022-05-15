@@ -1,0 +1,88 @@
+﻿<Window x:Class="LaborExchangeApplication.View.Windows.WorkRequestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaborExchangeApplication.View.Windows"
+        xmlns:viewmodel="clr-namespace:LaborExchangeApplication.ViewModel"
+        mc:Ignorable="d"
+        Title="Work requests" Height="700" Width="950" MinHeight="650" MinWidth="360" WindowStartupLocation="CenterScreen"
+        Style="{StaticResource WindowStyle}">
+
+    <Window.DataContext>
+        <viewmodel:WorkRequestViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+
+        <Border BorderThickness="0" Style="{StaticResource BorderStyle}" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal">
+                <Image Margin="5" Source="pack://application:,,,/Assets/Images/applicationImage.png" />
+                <TextBlock Text="ILabor Exchange" Style="{StaticResource TitleTextBlockStyle}" />
+            </StackPanel>
+        </Border>
+
+        <Button Grid.Column="1" Height="40" HorizontalAlignment="Right" Margin="5" Style="{StaticResource ColorSwitchImageButtonStyle}"
+                Command="{Binding SwitchColorModeCommand}" />
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Добавить заявку" Style="{StaticResource TitleTextBlockStyle}" />
+            <TextBlock Text="Должность" Style="{StaticResource TextBlockRowStyle}" />
+            <ComboBox Style="{StaticResource ComboBoxRowStyle}" ItemsSource="{Binding Professions}" SelectedItem="{Binding SelectedProfession}"
+                      DisplayMemberPath="Value" />
+            <TextBlock Text="Требования по зарплате (руб.)" Style="{StaticResource TextBlockRowStyle}" />
+            <TextBox Text="{Binding SalaryRequirements}" Style="{StaticResource TextBoxRowStyle}" />
+            <TextBlock Text="Рабочий день" Style="{StaticResource TextBlockRowStyle}" />
+            <ComboBox Style="{StaticResource ComboBoxRowStyle}" ItemsSource="{Binding WorkDayRequirements}" SelectedItem="{Binding SelectedWorkDayRequirement}"
+                      DisplayMemberPath="Value" />
+            <TextBlock Text="Доп. информация" Style="{StaticResource TextBlockRowStyle}" />
+            <TextBox Text="{Binding Info}" ToolTip="Укажите дополнительные особенности вашей заявки" TextWrapping="Wrap" AcceptsReturn="True"
+                     AcceptsTab="True" SpellCheck.IsEnabled="True" Height="100" Style="{StaticResource TextBoxRowStyle}" />
+            <Button Content="Добавить" Style="{StaticResource ButtonStyle}" Command="{Binding AddJobRequestCommand}" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" Grid.Column="1">
+            <StackPanel Margin="10">
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="Мои заявки" Margin="5,0" Style="{StaticResource TextBlockStyle}" />
+                </Border>
+                <ListBox ItemsSource="{Binding JobRequests}" SelectedItem="{Binding SelectedJobRequest}" Style="{StaticResource ListBoxStyle}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Border Margin="10" Style="{StaticResource BorderStyle}" CornerRadius="5">
+                                    <StackPanel Margin="10">
+                                        <TextBlock Text="{Binding ProfessionName}" Style="{StaticResource TextBlockRowStyle}" FontSize="22" FontWeight="Bold" />
+                                        <TextBlock Text="{Binding SalaryRequirements, StringFormat=Зарплата: {0}}" Style="{StaticResource TextBlockRowStyle}" />
+                                        <TextBlock Text="{Binding WorkDayRequirementsName, StringFormat=Рабочий день: {0}}" Style="{StaticResource TextBlockRowStyle}" />
+                                        <Separator />
+                                        <TextBlock Text="{Binding Info}" Style="{StaticResource TextBlockRowStyle}" />
+                                    </StackPanel>
+                                </Border>
+                                <Button Content="Удалить" Style="{StaticResource ButtonStyle}"
+                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}},
+                                        Path=DataContext.DeleteJobRequestCommand}" CommandParameter="{Binding}" Width="120" HorizontalAlignment="Left" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <Button  Content="Назад" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Style="{StaticResource ButtonStyle}"
+                 IsDefault="True"  Command="{Binding OpenApplicantWindowCommand}" />
+            <Button  Content="Выход" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Style="{StaticResource ButtonStyle}"
+                 IsDefault="True"  Command="{Binding SignOutCommand}" />
+        </StackPanel>
+    </Grid>
+</Window>

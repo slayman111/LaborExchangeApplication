@@ -1,0 +1,29 @@
+﻿<Window x:Class="LaborExchangeApplication.View.Windows.InformationBoxWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaborExchangeApplication.View.Windows"
+        mc:Ignorable="d"
+        Title="{Binding Title}" Height="250" Width="350" Style="{StaticResource WindowStyle}"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="45" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Image Height="40" Width="40" Source="{Binding Image}" />
+        <ScrollViewer Grid.Column="1" Margin="5,0,0,0">
+            <TextBlock Text="{Binding Information}" Style="{StaticResource TextBlockStyle}"  VerticalAlignment="Center"
+                   TextWrapping="Wrap" Height="Auto" />
+        </ScrollViewer>
+
+        <Button Grid.Row="1" Grid.ColumnSpan="2" Content="Закрыть" HorizontalAlignment="Center" VerticalAlignment="Center"
+                Margin="5,5" Width="120" IsDefault="True" Style="{StaticResource ButtonStyle}" Command="{Binding CloseWindowCommand}" />
+    </Grid>
+</Window>

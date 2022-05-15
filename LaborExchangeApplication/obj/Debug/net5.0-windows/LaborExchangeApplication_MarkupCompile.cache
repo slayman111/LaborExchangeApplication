@@ -1,0 +1,20 @@
+﻿LaborExchangeApplication
+
+
+winexe
+C#
+.cs
+D:\Projects\College\3 course\LaborExchange\LaborExchangeApplication\obj\Debug\net5.0-windows\
+LaborExchangeApplication
+none
+false
+TRACE;DEBUG;NET;NET5_0;NETCOREAPP
+D:\Projects\College\3 course\LaborExchange\LaborExchangeApplication\App.xaml
+91436420988
+1-347302998
+25-1930161827
+357-1019123033
+Assets\ResourceDictionaries\ColorDictionary.xaml;Assets\ResourceDictionaries\StyleDictionary.xaml;Assets\ResourceDictionaries\TemplateDictionary.xaml;View\Windows\ApplicantWindow.xaml;View\Windows\AuthorizationWindow.xaml;View\Windows\EmployerWindow.xaml;View\Windows\InformationBoxWindow.xaml;View\Windows\RegistrationWindow.xaml;View\Windows\WorkRequestWindow.xaml;
+
+False
+

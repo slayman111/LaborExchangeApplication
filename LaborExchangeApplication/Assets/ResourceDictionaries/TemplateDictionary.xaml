@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DataTemplate x:Key="DarkModeImageLight">
+        <Image Source="/Assets/Images/darkModeButtonLight.png" />
+    </DataTemplate>
+    <DataTemplate x:Key="DarkModeImageDark">
+        <Image Source="/Assets/Images/darkModeButtonDark.png" />
+    </DataTemplate>
+    <DataTemplate x:Key="PasswordVisibilityImageLight">
+        <Image Source="/Assets/Images/passwordEyeLight.png" />
+    </DataTemplate>
+    <DataTemplate x:Key="PasswordVisibilityImageDark">
+        <Image Source="/Assets/Images/passwordEyeDark.png" />
+    </DataTemplate>
+</ResourceDictionary>

@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\Images\applicationImage.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Images\applicationImage.ico" />
+    <None Remove="Assets\Images\applicationImage.png" />
+    <None Remove="Assets\Images\darkModeButtonDark.png" />
+    <None Remove="Assets\Images\darkModeButtonLight.png" />
+    <None Remove="Assets\Images\defaultAvatar.png" />
+    <None Remove="Assets\Images\error.png" />
+    <None Remove="Assets\Images\information.png" />
+    <None Remove="Assets\Images\noCompanyPhoto.png" />
+    <None Remove="Assets\Images\passwordEyeDark.png" />
+    <None Remove="Assets\Images\passwordEyeLight.png" />
+    <None Remove="Assets\Images\warning.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Images\applicationImage.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LaborExchangeApi\LaborExchangeApi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\applicationImage.ico" />
+    <Resource Include="Assets\Images\applicationImage.png" />
+    <Resource Include="Assets\Images\darkModeButtonDark.png" />
+    <Resource Include="Assets\Images\darkModeButtonLight.png" />
+    <Resource Include="Assets\Images\defaultAvatar.png" />
+    <Resource Include="Assets\Images\error.png" />
+    <Resource Include="Assets\Images\information.png" />
+    <Resource Include="Assets\Images\noCompanyPhoto.png" />
+    <Resource Include="Assets\Images\passwordEyeDark.png" />
+    <Resource Include="Assets\Images\passwordEyeLight.png" />
+    <Resource Include="Assets\Images\warning.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\ColorSettings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ColorSettings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\ColorSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ColorSettings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>
